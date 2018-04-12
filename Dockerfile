@@ -12,8 +12,8 @@ ENV RETENTION 10
 ENV RETENTION_DEPTH 32
 ENV SCHEDULE null
 
-ADD run.sh run.sh
-ADD backup.sh backup.sh
-ADD rotate.sh rotate.sh
+ADD run.sh /data/run.sh
+ADD backup.sh /data/backup.sh
+ADD rotate.sh /data/rotate.sh
 
 CMD ["sh", "run.sh"]
