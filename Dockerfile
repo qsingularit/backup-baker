@@ -7,7 +7,7 @@ ENV DPATH null
 ENV SPATH .
 ENV RETENTION 10
 ENV RETENTION_DEPTH 32
-ENV SHEDULE null
+ENV SCHEDULE null
 
 ADD run.sh run.sh
 ADD backup.sh backup.sh
@@ -15,6 +15,6 @@ ADD rotate.sh rotate.sh
 
 RUN mkdir /data
 
-WORKDIR data
+WORKDIR /data
 
 CMD ["sh", "run.sh"]
