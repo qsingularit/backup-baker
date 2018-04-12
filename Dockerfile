@@ -4,10 +4,12 @@ ADD install.sh install.sh
 RUN sh install.sh && rm install.sh
 
 RUN mkdir /data
+RUN mkdir /backup
+
 WORKDIR /data
 
-ENV DPATH null
-ENV SPATH .
+ENV DPATH /backup
+ENV SPATH /data
 ENV RETENTION 10
 ENV RETENTION_DEPTH 32
 ENV SCHEDULE null

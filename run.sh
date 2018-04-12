@@ -3,8 +3,8 @@
 set -e
 
 if [ "${SCHEDULE}" = "null" ]; then
-  sh backup.sh
+  sh /usr/share/backup.sh
 else
-  exec go-cron "$SCHEDULE" /bin/sh backup.sh
-  exec go-cron "$SCHEDULE" /bin/sh rotate.sh
+  exec go-cron "$SCHEDULE" /bin/sh /usr/share/backup.sh
+  exec go-cron "$SCHEDULE" /bin/sh /usr/share/rotate.sh
 fi
