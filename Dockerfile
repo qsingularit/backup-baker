@@ -13,6 +13,8 @@ ADD run.sh run.sh
 ADD backup.sh backup.sh
 ADD rotate.sh rotate.sh
 
+RUN mkdir /data
+
 WORKDIR data
 
 CMD ["sh", "run.sh"]
