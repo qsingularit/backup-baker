@@ -8,8 +8,8 @@ RUN mkdir /backup
 
 WORKDIR /data
 
-ENV DPATH /backup
-ENV SPATH .
+#ENV DPATH /backup
+#ENV SPATH .
 ENV RETENTION 10
 ENV RETENTION_DEPTH 32
 ENV SCHEDULE null
