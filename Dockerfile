@@ -8,7 +8,11 @@ RUN mkdir /backup
 
 WORKDIR /data
 
+<<<<<<< HEAD
 ENV DPATH /backup
+=======
+#ENV DPATH /backup
+>>>>>>> master
 ENV SPATH /data
 ENV RETENTION 10
 ENV RETENTION_DEPTH 32
