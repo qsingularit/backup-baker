@@ -41,7 +41,7 @@ function Copy_To_S3 () {
 
 #Search latest modified file for past 24 hours or less and copying it to S3
 
-FILELIST=$(find . 2>/dev/null -type f -maxdepth 1 -mindepth 1 -mtime -1 -printf "%f\n" | sort)
+FILELIST=$(find . 2>/dev/null -type f -maxdepth 1 -mindepth 1 -mtime -1 -print0 | cut -c 3- | sort)
 
 for i in $FILELIST; do
 
