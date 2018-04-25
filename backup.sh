@@ -3,7 +3,6 @@ set -e
 DUMPDATE=$(date +%F-%H-%M-%S-%Z)
 
 
-  # env vars needed for aws tools - only if an IAM role is not used
   export AWS_ACCESS_KEY_ID=${S3_ACCESS_KEY_ID}
   export AWS_SECRET_ACCESS_KEY=${S3_SECRET_ACCESS_KEY}
   export AWS_DEFAULT_REGION=${S3_REGION}
@@ -11,8 +10,8 @@ DUMPDATE=$(date +%F-%H-%M-%S-%Z)
 #If no S3 info provided, do a local backup only.
 Local_Backup () {
     if [ "$(ls -A ${SPATH})" ]; then
-        echo "Creating individual full local backup of ${i} from ${SPATH} to ${DPATH}" &&
-        find ${SPATH} -type d -maxdepth 1 -mindepth 1 -exec tar cf ${DPATH}/{}-${DUMPDATE}.tar.gz {}  \;
+        echo "Creating individual full local backup to ${DPATH}"
+        find . -type d -maxdepth 1 -mindepth 1 -exec tar cf ${DPATH}/{}-${DUMPDATE}.tar.gz {}  \;
     else
         echo "Found an empty directory. Nothing to do."
     fi
@@ -38,7 +37,7 @@ Local_Backup
 FILELIST=$(find ${DPATH} 2>/dev/null -type f -maxdepth 1 -mindepth 1 -mtime -1 -print0 | cut -c 9- | sort)
 
 for i in ${FILELIST}; do
-    echo "Creating individual full backup of ${i} from ${DPATH} to S3 ${S3_BUCKET}/${S3_PREFIX}" &&
+    echo "Creating individual full backup of ${i} from ${DPATH} to S3 ${S3_BUCKET}/${S3_PREFIX}"
     Copy_To_S3 ${i} ${i}
 done
     if [ $? == 0 ]; then
