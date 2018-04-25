@@ -28,7 +28,7 @@ function Copy_To_S3 () {
     AWS_ARGS="--endpoint-url ${S3_ENDPOINT}"
   fi
 
-  echo "Uploading ${DEST_FILE} on S3..."
+  echo "Uploading ${DEST_FILE} to S3 Bucket ${$S3_BUCKET}" &&
 
   cat $SRC_FILE | aws $AWS_ARGS s3 cp - s3://$S3_BUCKET/$S3_PREFIX/$DEST_FILE
 
@@ -45,8 +45,10 @@ FILELIST=$(find . 2>/dev/null -type f -maxdepth 1 -mindepth 1 -mtime -1 -printf 
 
 for i in $FILELIST; do
 
-    echo "Creating individual full backup of ${i} from ${$DPATH} to S3 ${S3_BUCKET/$S3_PREFIX} \n"
+    echo "Creating individual full backup of ${i} from ${$DPATH} to S3 ${S3_BUCKET/$S3_PREFIX} \n" &&
+
     Copy_To_S3 ${i} ${i}
+
 done
 
     if [ $? == 0 ]; then
