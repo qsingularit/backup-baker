@@ -7,6 +7,7 @@ apk update
 
 # install s3 tools
 apk add python py-pip
+pip install --upgrade pip
 pip install awscli
 apk del py-pip
 
