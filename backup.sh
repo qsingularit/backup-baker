@@ -3,6 +3,13 @@
 set -e
 DUMPDATE=$(date +%F-%H-%M-%S-%Z)
 
+if [ "${S3_IAMROLE}" != "true" ]; then
+  # env vars needed for aws tools - only if an IAM role is not used
+  export AWS_ACCESS_KEY_ID=$S3_ACCESS_KEY_ID
+  export AWS_SECRET_ACCESS_KEY=$S3_SECRET_ACCESS_KEY
+  export AWS_DEFAULT_REGION=$S3_REGION
+fi
+
 if [ "${S3_ACCESS_KEY_ID}" == "null" ] || [ "${S3_SECRET_ACCESS_KEY}" == "null" ] || [ "${S3_BUCKET}" == "null" ]; then
 
     echo "No AWS S3 credentials or bucket is supplied. Making a local backup only."
