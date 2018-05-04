@@ -42,6 +42,7 @@ for i in ${FILELIST}; do
 done
     if [ $? == 0 ]; then
         echo "Backup to S3 complete!"
+        exit 0
     fi
 }
 
