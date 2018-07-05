@@ -8,9 +8,6 @@ if [ "${SCHEDULE}" = "null" ]; then
 else
   exec go-cron "$SCHEDULE" /bin/sh /usr/share/backup.sh
 
-  if [ $? == 0 ]; then
-        echo "Retention startng with leaving only ${RETENTION}"
         exec go-cron "$SCHEDULE" /bin/sh /usr/share/rotate.sh
-  fi
 
 fi
