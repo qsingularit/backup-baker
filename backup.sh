@@ -11,7 +11,7 @@ DUMPDATE=$(date +%F-%H-%M-%S-%Z)
 Local_Backup () {
     if [ "$(ls -A ${SPATH})" ]; then
         echo "Creating individual full local backup to ${DPATH}"
-        find . -type d -maxdepth 1 -mindepth 1 -exec tar cf ${DPATH}/{}-${DUMPDATE}.tar.gz {}  \;
+        find . -type d -maxdepth 1 -mindepth 1 -exec tar cf ${DPATH}/{}-${DUMPDATE}.tar {}  \;
     else
         echo "Found an empty directory. Nothing to do."
     fi
