@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/sh
 
 set -e
 
@@ -20,3 +20,5 @@ apk del curl
 
 # cleanup
 rm -rf /var/cache/apk/*
+
+exit 0
