@@ -11,9 +11,9 @@ set -e
 
     else
 
-      exec go-cron "$SCHEDULE" /bin/sh /usr/share/backup.sh && /bin/sh /usr/share/rotate.sh
+        exec go-cron  -s "$SCHEDULE" -- /bin/sh /usr/share/backup.sh && /bin/sh /usr/share/rotate.sh
 
-         echo "Set schedule set at ${SCHEDULE}" >> /var/log/bb.log;
+        echo "Set schedule set at ${SCHEDULE}" >> /var/log/bb.log;
 
     fi
 
