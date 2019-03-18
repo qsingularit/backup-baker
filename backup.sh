@@ -87,4 +87,9 @@ else
 
 fi
 
+if [[ $? == 0 ]]; then
+    echo "Backup to S3 complete! Let's do some cleanup"
+    source /usr/share/rotate.sh
+fi
+
 exit 0
