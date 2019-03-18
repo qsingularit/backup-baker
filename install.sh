@@ -13,7 +13,7 @@ pip install awscli
 apk del py-pip
 
 # install go-cron
-apk add curl
+apk add curl lftp
 curl -L --insecure https://github.com/odise/go-cron/releases/download/v${GOCRON_VERSION}/go-cron-linux.gz | zcat > /usr/local/bin/go-cron
 chmod u+x /usr/local/bin/go-cron
 apk del curl
