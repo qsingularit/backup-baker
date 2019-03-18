@@ -10,7 +10,7 @@ DUMPDATE=$(date +%F-%H-%M-%S-%Z)
 # FTP credentials export to variables from ENV
   export FTP_HOSTNAME=${FTP_HOST}
   export FTP_USERNAME=${FTP_USER}
-  export FTP_PASSWORD=${FTP_USER}
+  export FTP_PASSWORD=${FTP_PASS}
 
 # If no S3 info provided, do a local backup only.
 Local_Backup () {
@@ -41,7 +41,7 @@ Local_To_Remote_Backup (){
     Copy_To_FTP (){
             DST_FILE=$1
             echo "Uploading ${DST_FILE} to FTP server ${FTP_HOSTNAME}";
-            lftp ftp://${FTP_USERNAME}:${FTP_PASSWORD}@${FTP_HOSTNAME} -e "set ftp:ssl-allow no; put -c ${DST_FILE}; exit"
+            lftp ftp://${FTP_USERNAME}:${FTP_PASSWORD}@${FTP_HOSTNAME} -e "set ftp:ssl-allow no; put -c ${DPATH}/${DST_FILE}; exit"
 
             if [[ $? != 0 ]]; then
                     >&2 echo "#${DUMPDATE} Error uploading ${DEST_FILE} to FTP" >> /var/log/bb.log
@@ -61,7 +61,6 @@ Local_To_Remote_Backup (){
 
         if [[ $? == 0 ]]; then
             echo "Backup to S3 complete!"
-            exit 0
         fi
 
     if [[ ${FTP_HOSTNAME} != "null" ]]; then
@@ -88,5 +87,4 @@ else
 
 fi
 
-
-
+exit 0
