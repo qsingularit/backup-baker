@@ -2,8 +2,10 @@
 
 set -e
 
+DUMPDATE=$(date +%F-%H-%M-%S-%Z)
+
 find $DPATH -type f -mtime -$RETENTION_DEPTH ! -mtime -$RETENTION -exec rm -rf {} \;
 
-echo "Cleaned!" >> /var/log/bb.log;
+echo "${DUMPDATE} Cleaned" >> /var/log/bb.log;
 
 exit 0
