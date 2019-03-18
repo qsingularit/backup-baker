@@ -31,6 +31,10 @@ ADD run.sh /usr/share/run.sh
 ADD backup.sh /usr/share/backup.sh
 ADD rotate.sh /usr/share/rotate.sh
 
+#FTP credentials
+ENV FTP_HOST null
+ENV FTP_USER null
+ENV FTP_PASS null
 
 
 CMD ["sh", "/usr/share/run.sh"]
